@@ -5,7 +5,7 @@ import sqlite3
 
 def get_five_last_checks():
         statement = "SELECT * FROM log ORDER BY timestamp DESC LIMIT 5"
-        os.chdir('Gurra')
+        os.chdir('dashboard')
         dir = os.getcwd()
         try:
                 con = sqlite3.connect(dir + "\\tradingbot.db")

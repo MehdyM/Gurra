@@ -3,6 +3,7 @@ import os
 
 def get_account_balance(): 
         statement = "SELECT * FROM account_balance"
+        os.chdir('dashboard')
         dir = os.getcwd()
         print(dir)
         try:
@@ -32,7 +33,7 @@ def account_balance_for_view():
 
 def get_five_last_checks():
         statement = "SELECT * FROM log ORDER BY timestamp DESC LIMIT 5"
-        os.chdir('Gurra')
+        os.chdir('dashboard')
         dir = os.getcwd()
         try:
                 con = sqlite3.connect(dir + "\\tradingbot.db")
@@ -60,7 +61,7 @@ def checks_for_view():
 
 def get_ten_last_sold():
         statement = "SELECT * FROM purchases WHERE is_sold = 1 ORDER BY timestamp DESC LIMIT 10"
-        os.chdir('Gurra')
+        os.chdir('dashboard')
         dir = os.getcwd()
         try:
                 con = sqlite3.connect(dir + "\\tradingbot.db")
