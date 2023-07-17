@@ -1,0 +1,17 @@
+{% load static %}
+<!doctype html>
+    <head>
+        <link rel='stylesheet' type='text/css' href="{% static 'dashboard/main.css' %}"></link>
+        <title>
+            dashboard
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>    </head>
+    <body>
+        <h1>Portfolio total value</h1>
+        <p>{{ balance }}<p>
+        <h1>Portfolio</h1>
+        <h1>Gurra Live</h1>
+        <h1>Last 10 Sells</h1>
+        <script src="{% static 'dashboard/script.js' %}"></script>
+    </body>
+</html>
