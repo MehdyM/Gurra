@@ -1,17 +1,86 @@
 {% load static %}
 <!doctype html>
     <head>
+
         <link rel='stylesheet' type='text/css' href="{% static 'dashboard/main.css' %}"></link>
+
         <title>
             dashboard
         </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>    </head>
     <body>
         <h1>Portfolio total value</h1>
-        <p>{{ balance }}<p>
+        <p>{{ total }}<p>
         <h1>Portfolio</h1>
+        <table class="portfolio">
+            <tr>
+                <th>Asset</th>
+                <th>Quantity</th>
+                <th>Value (USD)</th>
+            </tr>
+        {% for asset in balance %}
+        <tr>
+        <td>{{ asset.symbol }}</td>
+        <td>{{ asset.qty }}</td>
+        <td>{{ asset.value }}</td>
+        </tr>
+        {% endfor %}
+        </table>
         <h1>Gurra Live</h1>
+        <table class="checks">
+            <tr>
+                <th>Timestamp</th>
+                <th>Asset</th>
+                <th>Purchase price</th>
+                <th>Current price</th>
+                <th>Gurra dynamic sales price</th>
+            </tr>
+        {% for check in checks %}
+        <tr>
+        <td>{{ check.timestamp }}</td>
+        <td>{{ check.symbol }}</td>
+        <td>{{ check.purchase_price }}</td>
+        <td>{{ check.current_price }}</td>
+        <td>{{ check.dynamic }}</td>
+        </tr>
+        {% endfor %}
+        </table>
         <h1>Last 10 Sells</h1>
+        <table class="trades">
+            <tr>
+                <th>Timestamp</th>
+                <th>Asset</th>
+                <th>Purchase price</th>
+                <th>Sold price</th>
+                <th>%</th>
+            </tr>
+        {% for sale in sales %}
+        <tr>
+        <td>{{ sale.timestamp }}</td>
+        <td>{{ sale.symbol }}</td>
+        <td>{{ sale.purchase_price }}</td>
+        <td>{{ sale.sold_price }}</td>
+        <td>{{ sale.percentage }} %</td>
+        </tr>
+        {% endfor %}
+        </table>
         <script src="{% static 'dashboard/script.js' %}"></script>
+        <script>
+            $(document).ready(function(){
+                setInterval(function(){
+                    $.ajax({
+                        type:'GET',
+                        url: "{% url 'dashboard-home' %}",
+                        success: function(response){
+                            $("html").empty();
+                            $("html").html(response);
+                        },
+                        error: function(response){
+                            console.log('error');
+                        }
+                    });
+                },3000);
+            });
+        </script>
     </body>
 </html>
