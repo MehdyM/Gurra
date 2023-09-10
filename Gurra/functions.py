@@ -9,8 +9,8 @@ import sqlite3
 #connect to binance
 def connect_to_binance():
     global client
-    api_secret = 'Y3hJF7Jh0uimNmVwZAQ2yEyrAEpyLFm9zREKYNkZn3AxMPRQad6E4aMpE6kFFpBK'
-    api_key = 'NYKfJjNQDHPIk8QG49kVEsflG2NEOH6jDpOry3ETjDsYWK9bz1Tjo969EgnnGe7G'
+    api_secret = ''
+    api_key = ''
     client = Client(api_key, api_secret)
 
 
